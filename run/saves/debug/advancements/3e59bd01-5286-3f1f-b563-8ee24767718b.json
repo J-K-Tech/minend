@@ -1,0 +1,21 @@
+{
+  "minecraft:recipes/misc/nether_brick": {
+    "criteria": {
+      "has_netherrack": "2021-07-21 18:44:03 -0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/beacon": {
+    "criteria": {
+      "has_nether_star": "2021-07-21 18:44:39 -0300"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:plains": "2021-07-21 18:36:59 -0300"
+    },
+    "done": false
+  },
+  "DataVersion": 2825
+}
