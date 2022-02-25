@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 
-public class groups{
+public class groups {
     public static final ItemGroup MINEND_MATERIALS = FabricItemGroupBuilder.build(
             new Identifier("minend", "materials"),
             () -> new ItemStack(items.RESIN)

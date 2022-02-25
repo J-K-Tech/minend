@@ -3,9 +3,9 @@ package com.jktech.minend.registry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+
+import java.util.*;
+
 import static com.jktech.minend.registry.items.COINS;
 
 
@@ -20,7 +20,11 @@ public class LootpackItem extends Item {
         this.loots = lotss;
     }
     public List<ItemStack> sortloot(PlayerEntity player){
-        List<ItemStack> list = Arrays.asList();
+
+        if (Objects.isNull(player))
+            return Collections.emptyList();
+
+        List<ItemStack> list = new ArrayList<>();
         for (int i = 0;i < loots.stacks.size();i++){
         double min = 0;
         double max = 100;

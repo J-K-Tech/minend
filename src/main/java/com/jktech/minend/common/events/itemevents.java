@@ -8,89 +8,99 @@
 
 package com.jktech.minend.common.events;
 import com.jktech.minend.registry.items;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 
 @Mixin(ItemEntity.class)
-public abstract class itemevents{
-    private static TrackedData<ItemStack> STACK;
-    private int health;
-    public ItemStack getsta(){
-        return ((ItemEntity)(Object)this).getStack();
-    }
-    public void setsta(ItemStack sta){
-        System.out.println("!!!  [[ WOW!!! ]]  its changing!!!");
-        ItemEntity newitem = EntityType.ITEM.create(((ItemEntity)(Object)this).world);
-        newitem.setStack(sta);
-        newitem.setPos(((ItemEntity)(Object)this).getX(),((ItemEntity)(Object)this).getY(),((ItemEntity)(Object)this).getZ());
+public abstract class itemevents extends Entity {
 
-        newitem.refreshPositionAndAngles(((ItemEntity)(Object)this).getX(),
-                ((ItemEntity)(Object)this).getY(),((ItemEntity)(Object)this).getZ(), 0.0F, 0.0F);
-
-        ((ItemEntity)(Object)this).world.spawnEntity(newitem);
-        newitem.refreshPositionAndAngles(((ItemEntity)(Object)this).getX(),
-        ((ItemEntity)(Object)this).getY(),((ItemEntity)(Object)this).getZ(), 0.0F, 0.0F);
-        System.out.println("!!!  [[ WOW!!! ]]  it changed!!!");
+    // fake constructor to make the ide quiet
+    public itemevents(EntityType<?> type, World world) {
+        super(type, world);
     }
+    // shadowed things to access members and methods of ItemEntity.class
+    @Shadow public abstract ItemStack getStack();
+    @Shadow public abstract void setStack(ItemStack stack);
+    @Shadow private int health;
+
+    //private int health;
+    // not sure why you need to create a brand new itementity when there is a perfectly good setStack method already
+//    public void setStack(ItemStack sta){
+//        System.out.println("!!!  [[ WOW!!! ]]  its changing!!!");
+//        ItemEntity newitem = EntityType.ITEM.create(this.world);
+//        newitem.setStack(sta);
+//        newitem.setPos(this.getX(),this.getY(),this.getZ());
+//
+//        newitem.refreshPositionAndAngles(this.getX(),
+//                this.getY(),this.getZ(), 0.0F, 0.0F);
+//
+//        this.world.spawnEntity(newitem);
+//        newitem.refreshPositionAndAngles(this.getX(),
+//        this.getY(),this.getZ(), 0.0F, 0.0F);
+//        System.out.println("!!!  [[ WOW!!! ]]  it changed!!!");
+//    }
 
     protected void schedule() {((ItemEntity)(Object)this).velocityModified = true;}
 
 
     public boolean unburnable(){
-        if (this.getsta().isOf(Items.IRON_INGOT) || this.getsta().isOf(Items.GOLD_INGOT) || this.getsta().isOf(Items.COOKED_COD) ||
-                this.getsta().isOf(Items.COOKED_BEEF) || this.getsta().isOf(Items.COOKED_CHICKEN) || this.getsta().isOf(Items.COOKED_MUTTON) ||
-                this.getsta().isOf(Items.COOKED_PORKCHOP) || this.getsta().isOf(Items.COOKED_RABBIT) || this.getsta().isOf(Items.COOKED_SALMON) ||
-                this.getsta().isOf(Items.CHARCOAL) || this.getsta().isOf(Items.STONE) || this.getsta().isOf(Items.DEEPSLATE) ||this.getsta().isOf(Items.BRICK) ||
-                this.getsta().isOf(Items.GLASS) || this.getsta().isOf(Items.NETHER_BRICK) ||this.getsta().isOf(items.RESIN)){
+        if (this.getStack().isOf(Items.IRON_INGOT) || this.getStack().isOf(Items.GOLD_INGOT) || this.getStack().isOf(Items.COOKED_COD) ||
+                this.getStack().isOf(Items.COOKED_BEEF) || this.getStack().isOf(Items.COOKED_CHICKEN) || this.getStack().isOf(Items.COOKED_MUTTON) ||
+                this.getStack().isOf(Items.COOKED_PORKCHOP) || this.getStack().isOf(Items.COOKED_RABBIT) || this.getStack().isOf(Items.COOKED_SALMON) ||
+                this.getStack().isOf(Items.CHARCOAL) || this.getStack().isOf(Items.STONE) || this.getStack().isOf(Items.DEEPSLATE) ||this.getStack().isOf(Items.BRICK) ||
+                this.getStack().isOf(Items.GLASS) || this.getStack().isOf(Items.NETHER_BRICK) ||this.getStack().isOf(items.RESIN)){
             return true;
         }
         else {return false;}
     }
     public boolean islog(){
-        if (this.getsta().isOf(Items.ACACIA_LOG) || this.getsta().isOf(Items.BIRCH_LOG) || this.getsta().isOf(Items.OAK_LOG) ||
-                this.getsta().isOf(Items.DARK_OAK_LOG) || this.getsta().isOf(Items.JUNGLE_LOG) || this.getsta().isOf(Items.SPRUCE_LOG)||
-                this.getsta().isOf(Items.CRIMSON_STEM) || this.getsta().isOf(Items.WARPED_STEM)){return true;}
+        if (this.getStack().isOf(Items.ACACIA_LOG) || this.getStack().isOf(Items.BIRCH_LOG) || this.getStack().isOf(Items.OAK_LOG) ||
+                this.getStack().isOf(Items.DARK_OAK_LOG) || this.getStack().isOf(Items.JUNGLE_LOG) || this.getStack().isOf(Items.SPRUCE_LOG)||
+                this.getStack().isOf(Items.CRIMSON_STEM) || this.getStack().isOf(Items.WARPED_STEM)){return true;}
         else {return false;}
     }
     public boolean changeable(){
-        if (this.getsta().isOf(Items.RAW_IRON) || this.getsta().isOf(Items.RAW_GOLD) || this.getsta().isOf(Items.COD) ||
-                this.getsta().isOf(Items.BEEF) || this.getsta().isOf(Items.CHICKEN) || this.getsta().isOf(Items.MUTTON) ||
-                this.getsta().isOf(Items.PORKCHOP) || this.getsta().isOf(Items.RABBIT) || this.getsta().isOf(Items.SALMON) ||
-                this.islog() || this.getsta().isOf(Items.COBBLESTONE) || this.getsta().isOf(Items.COBBLED_DEEPSLATE) ||
-                this.getsta().isOf(Items.CLAY_BALL) ||
-                this.getsta().isOf(Items.SAND) || this.getsta().isOf(Items.NETHERRACK) || this.getsta().isOf(items.RESIN)){
+        if (this.getStack().isOf(Items.RAW_IRON) || this.getStack().isOf(Items.RAW_GOLD) || this.getStack().isOf(Items.COD) ||
+                this.getStack().isOf(Items.BEEF) || this.getStack().isOf(Items.CHICKEN) || this.getStack().isOf(Items.MUTTON) ||
+                this.getStack().isOf(Items.PORKCHOP) || this.getStack().isOf(Items.RABBIT) || this.getStack().isOf(Items.SALMON) ||
+                this.islog() || this.getStack().isOf(Items.COBBLESTONE) || this.getStack().isOf(Items.COBBLED_DEEPSLATE) ||
+                this.getStack().isOf(Items.CLAY_BALL) ||
+                this.getStack().isOf(Items.SAND) || this.getStack().isOf(Items.NETHERRACK) || this.getStack().isOf(items.RESIN)){
             return true;
         }
         else {return false;}
     }
     public void transform(){
         System.out.println("!!!  [[ WOW!!! ]]  its trying to change!!!");
-        if (this.islog()){this.setsta(new ItemStack(Items.CHARCOAL,this.getsta().getCount()));}
-        else if (this.getsta().isOf(Items.RAW_IRON)){this.setsta(new ItemStack(Items.IRON_INGOT,this.getsta().getCount()));}
-        else if (this.getsta().isOf(Items.RAW_GOLD)){this.setsta(new ItemStack(Items.GOLD_INGOT,this.getsta().getCount()));}
-        else if (this.getsta().isOf(Items.RAW_COPPER)){this.setsta(new ItemStack(Items.COPPER_INGOT,this.getsta().getCount()));}
-        else if (this.getsta().isOf(Items.BEEF)){this.setsta(new ItemStack(Items.COOKED_BEEF,this.getsta().getCount()));}
-        else if (this.getsta().isOf(Items.CHICKEN)){this.setsta(new ItemStack(Items.COOKED_CHICKEN,this.getsta().getCount()));}
-        else if (this.getsta().isOf(Items.COD)){this.setsta(new ItemStack(Items.COOKED_COD,this.getsta().getCount()));}
-        else if (this.getsta().isOf(Items.SALMON)){this.setsta(new ItemStack(Items.COOKED_SALMON,this.getsta().getCount()));}
-        else if (this.getsta().isOf(Items.MUTTON)){this.setsta(new ItemStack(Items.COOKED_MUTTON,this.getsta().getCount()));}
-        else if (this.getsta().isOf(Items.PORKCHOP)){this.setsta(new ItemStack(Items.COOKED_PORKCHOP,this.getsta().getCount()));}
-        else if (this.getsta().isOf(Items.RABBIT)){this.setsta(new ItemStack(Items.COOKED_RABBIT,this.getsta().getCount()));}
-        else if (this.getsta().isOf(items.RESIN)){this.setsta(new ItemStack(items.PLASTIC,this.getsta().getCount()));}
-        else if (this.getsta().isOf(Items.COBBLESTONE)){this.setsta(new ItemStack(Items.STONE,this.getsta().getCount()));}
-        else if (this.getsta().isOf(Items.COBBLED_DEEPSLATE)){this.setsta(new ItemStack(Items.DEEPSLATE,this.getsta().getCount()));}
-        else if (this.getsta().isOf(Items.SAND)){this.setsta(new ItemStack(Items.GLASS,this.getsta().getCount()));}
-        else if (this.getsta().isOf(Items.NETHERRACK)){this.setsta(new ItemStack(Items.NETHER_BRICK,this.getsta().getCount()));}
+        if (this.islog()){this.setStack(new ItemStack(Items.CHARCOAL,this.getStack().getCount()));}
+        else if (this.getStack().isOf(Items.RAW_IRON)){this.setStack(new ItemStack(Items.IRON_INGOT,this.getStack().getCount()));}
+        else if (this.getStack().isOf(Items.RAW_GOLD)){this.setStack(new ItemStack(Items.GOLD_INGOT,this.getStack().getCount()));}
+        else if (this.getStack().isOf(Items.RAW_COPPER)){this.setStack(new ItemStack(Items.COPPER_INGOT,this.getStack().getCount()));}
+        else if (this.getStack().isOf(Items.BEEF)){this.setStack(new ItemStack(Items.COOKED_BEEF,this.getStack().getCount()));}
+        else if (this.getStack().isOf(Items.CHICKEN)){this.setStack(new ItemStack(Items.COOKED_CHICKEN,this.getStack().getCount()));}
+        else if (this.getStack().isOf(Items.COD)){this.setStack(new ItemStack(Items.COOKED_COD,this.getStack().getCount()));}
+        else if (this.getStack().isOf(Items.SALMON)){this.setStack(new ItemStack(Items.COOKED_SALMON,this.getStack().getCount()));}
+        else if (this.getStack().isOf(Items.MUTTON)){this.setStack(new ItemStack(Items.COOKED_MUTTON,this.getStack().getCount()));}
+        else if (this.getStack().isOf(Items.PORKCHOP)){this.setStack(new ItemStack(Items.COOKED_PORKCHOP,this.getStack().getCount()));}
+        else if (this.getStack().isOf(Items.RABBIT)){this.setStack(new ItemStack(Items.COOKED_RABBIT,this.getStack().getCount()));}
+        else if (this.getStack().isOf(items.RESIN)){this.setStack(new ItemStack(items.PLASTIC,this.getStack().getCount()));}
+        else if (this.getStack().isOf(Items.COBBLESTONE)){this.setStack(new ItemStack(Items.STONE,this.getStack().getCount()));}
+        else if (this.getStack().isOf(Items.COBBLED_DEEPSLATE)){this.setStack(new ItemStack(Items.DEEPSLATE,this.getStack().getCount()));}
+        else if (this.getStack().isOf(Items.SAND)){this.setStack(new ItemStack(Items.GLASS,this.getStack().getCount()));}
+        else if (this.getStack().isOf(Items.NETHERRACK)){this.setStack(new ItemStack(Items.NETHER_BRICK,this.getStack().getCount()));}
         
     }
 
@@ -99,23 +109,23 @@ public abstract class itemevents{
 
 
 
-    @Inject(method = "damage",at = @At("HEAD"))
-    public boolean damage(DamageSource source, float amount, CallbackInfoReturnable ci) {
-        if (((ItemEntity)(Object)this).isInvulnerableTo(source) || this.unburnable()) {
+    @Inject(method = "damage",at = @At("HEAD"), cancellable = true)
+    public void damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> ci) {
+        if (this.isInvulnerableTo(source) || this.unburnable()) {
             System.out.println("!!!  [[ WOW!!! ]]  its unburnable!!!");
-            return false;
+            ci.setReturnValue(false);
         } else if (this.changeable()){
             System.out.println("!!!  [[ WOW!!! ]]  its burnable!!!");
             this.schedule();
             this.health = (int)((float)this.health - amount);
-            ((ItemEntity)(Object)this).emitGameEvent(GameEvent.ENTITY_DAMAGED, source.getAttacker());
+            this.emitGameEvent(GameEvent.ENTITY_DAMAGED, source.getAttacker());
             if (this.health <= 0) {
                 System.out.println("!!!  [[ WOW!!! ]]  its health is 0 or less!!!");
                 this.transform();
-                this.getsta().onItemEntityDestroyed(((ItemEntity)(Object)this));
-                ((ItemEntity)(Object)this).discard();
+                this.getStack().onItemEntityDestroyed(((ItemEntity)(Object)this));
+                this.discard();
             }}
 
-            return true;
+            ci.setReturnValue(true);
     }
 }
