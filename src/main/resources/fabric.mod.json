@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "minend",
+  "version": "0.01-alpha-test",
+
+  "name": "Minend",
+  "description": "Minend is a rpg mod that add new weapons,loots,mods,materials,ores and world generation turning minecrat into a even more immersve rpg experience",
+  "authors": [
+    "JKTech"
+  ],
+  "contact": {
+    "homepage": "https://patreon.com/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/minend/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.jktech.minend.Initi"
+    ]
+  },
+  "mixins": [
+    "minend.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.12.12",
+    "fabric": ">=0.46.0+1.17",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  }
+}

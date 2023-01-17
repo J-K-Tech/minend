@@ -1,0 +1,85 @@
+{
+  "type": "minend:afterend",
+  "generator": {
+    "type": "minecraft:noise",
+    "seed": -1717360447,
+    "settings": {
+      "sea_level": 72,
+      "disable_mob_generation": false,
+      "noise_caves_enabled": true,
+      "noodle_caves_enabled": true,
+      "aquifers_enabled": true,
+      "ore_veins_enabled": true,
+      "legacy_random_source": false,
+      "default_block": {
+        "Name": "minecraft:stone"
+      },
+      "default_fluid": {
+        "Name": "minecraft:water",
+        "Properties": {
+          "level": "0"
+        }
+      },
+      "noise": {
+        "min_y": 0,
+        "height": 256,
+        "size_horizontal": 1,
+        "size_vertical": 2,
+        "island_noise_override": true,
+        "amplified": false,
+        "large_biomes": false,
+        "sampling": {
+          "xz_scale": 0.9999999814507745,
+          "y_scale": 0.9999999814507745,
+          "xz_factor": 80,
+          "y_factor": 160
+        },
+        "bottom_slide": {
+          "target": 0.1171875,
+          "size": 3,
+          "offset": 0
+        },
+        "top_slide": {
+          "target": -0.078125,
+          "size": 2,
+          "offset": 8
+        },
+        "terrain_shaper": {
+          "offset": 0,
+          "factor": 0,
+          "jaggedness": 0
+        }
+      },
+      "surface_rule": {
+        "type": "minecraft:sequence",
+        "sequence": []
+      },
+      "structures": {
+        "structures": {
+          "blah:some": {
+            "spacing": 10,
+            "separation": 5,
+            "salt": 0
+          }
+        }
+      }
+    },
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "minend:biome",
+          "parameters": {
+            "temperature": 0,
+            "humidity": 0,
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 1,
+            "depth": 0,
+            "offset": 0
+          }
+        }
+      ]
+    }
+  }
+}

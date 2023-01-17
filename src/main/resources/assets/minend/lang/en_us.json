@@ -1,0 +1,41 @@
+{
+  "item.minend.resin": "╔═════Resin════╉─>",
+  "item.minend.plastic": "╔═════Plastic════╉─>",
+  
+  "item.minend.knife": "Knife",
+  "item.minend.machete": "╔═════machete════╉─>",
+  
+  "item.minend.tiny_pack": "╔═════Tiny pack════╉─>",
+  "item.minend.medium_pack": "╔═════Medium pack════╉─>",
+  "item.minend.big_pack": "╔═════Big pack════╉─>"
+  
+  "item.minend.stone_war_axe": "╔═════stone war axe════╉─>",
+  "item.minend.iron_war_axe": "╔═════iron war axe════╉─>",
+  "item.minend.gold_war_axe": "╔═════gold war axe════╉─>",
+  "item.minend.diamond_war_axe": "╔═════diamond war axe════╉─>",
+  
+  "item.minend.stone_war_poleaxe": "╔═════stone poleaxe════╉─>",
+  "item.minend.iron_war_poleaxe": "╔═════iron poleaxe════╉─>",
+  "item.minend.gold_war_poleaxe": "╔═════gold poleaxe════╉─>",
+  "item.minend.diamond_war_poleaxe": "╔═════diamond poleaxe════╉─>",
+  
+  "item.minend.stone_warhammer": "╔═════stone warhammer════╉─>",
+  "item.minend.iron_warhammer": "╔═════iron warhammer════╉─>",
+  "item.minend.gold_warhammer": "╔═════gold warhammer════╉─>",
+  "item.minend.diamond_warhammer": "╔═════diamond warhammer════╉─>",
+  
+  "item.minend.stone_heavy_warhammer": "╔═════stone heavy warhammer════╉─>",
+  "item.minend.iron_heavy_warhammer": "╔═════iron heavy warhammer════╉─>",
+  "item.minend.gold_heavy_warhammer": "╔═════gold heavy warhammer════╉─>",
+  "item.minend.diamond_heavy_warhammer": "╔═════diamond heavy warhammer════╉─>",
+  
+  "item.minend.stone_heavy_war_axe": "╔═════stone heavy war axe════╉─>",
+  "item.minend.iron_heavy_war_axe": "╔═════iron heavy war axe════╉─>",
+  "item.minend.gold_heavy_war_axe": "╔═════gold heavy war axe════╉─>",
+  "item.minend.diamond_heavy_war_axe": "╔═════diamond heavy war axe════╉─>",
+  
+  "item.minend.stone_heavy_war_poleaxe": "╔═════stone heavy poleaxe════╉─>",
+  "item.minend.iron_heavy_war_poleaxe": "╔═════iron heavy poleaxe════╉─>",
+  "item.minend.gold_heavy_war_poleaxe": "╔═════gold heavy poleaxe════╉─>",
+  "item.minend.diamond_heavy_war_poleaxe": "╔═════diamond heavy poleaxe════╉─>",
+}

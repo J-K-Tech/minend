@@ -1,0 +1,58 @@
+{
+    "pools": [
+      {
+        "rolls": 1,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "minend:big_pack",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1
+              }
+            ],
+            "conditions": [
+              {
+                "condition": "minecraft:random_chance",
+                "chance": 0.15
+              }
+            ]
+          },
+          {
+            "type": "minecraft:item",
+            "name": "minend:medium_pack",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1
+              }
+            ],
+            "conditions": [
+              {
+                "condition": "minecraft:random_chance",
+                "chance": 0.35
+              }
+            ]
+          },
+          {
+            "type": "minecraft:item",
+            "name": "minend:tiny_pack",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": 1
+              }
+            ],
+            "conditions": [
+              {
+                "condition": "minecraft:random_chance",
+                "chance": 0.7
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  
